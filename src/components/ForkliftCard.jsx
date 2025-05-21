@@ -1,6 +1,6 @@
 import React from "react";
 
-const ForkliftCard = ({ forklift }) => {
+const ForkliftCard = ({ forklift, onRent }) => {
   return (
     <div className="border rounded-lg w-72 shadow-md overflow-hidden">
       <div className="bg-gray-100 h-48 flex items-center justify-center overflow-hidden">
@@ -51,7 +51,7 @@ const ForkliftCard = ({ forklift }) => {
           {forklift.status === "available" && (
             <button
               className="bg-[#1d411d] hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              onClick={() => {}}
+              onClick={() => onRent(forklift.id)}
             >
               Rent
             </button>

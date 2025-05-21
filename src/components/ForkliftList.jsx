@@ -1,6 +1,6 @@
 import ForkliftCard from "./ForkliftCard";
 
-const ForkliftList = ({ forklifts }) => {
+const ForkliftList = ({ forklifts, onRent }) => {
   return (
     <section className="py-8">
       <h2 className="text-2xl font-bold mb-6 text-center">
@@ -8,7 +8,7 @@ const ForkliftList = ({ forklifts }) => {
       </h2>
       <div className="flex justify-center gap-6">
         {forklifts.map((forklift) => (
-          <ForkliftCard key={forklift.id} forklift={forklift} />
+          <ForkliftCard key={forklift.id} forklift={forklift} onRent={onRent} />
         ))}
       </div>
     </section>

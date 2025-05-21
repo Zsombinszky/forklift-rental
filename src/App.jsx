@@ -39,13 +39,31 @@ function App() {
         "https://www.kalmar.es/4afce4/globalassets/dam/2024/12/20/kalmar-largest-forklift-in-n.a-17-54158375ae8deb3a543585c0fa974eafb7327b.jpg",
     },
   ]);
+  const [rentedForklift, setRentedForklift] = useState(null);
+
+  const handleRent = (id) => {
+    const updatedForklifts = forklifts.map((forklift) =>
+      forklift.id === id ? { ...forklift, status: "unavailable" } : forklift
+    );
+    setForklifts(updatedForklifts);
+    setRentedForklift(forklifts.find((forklift) => forklift.id === id));
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-grow container mx-auto px-4 py-8">
-        <ForkliftList forklifts={forklifts} />
+        <ForkliftList forklifts={forklifts} onRent={handleRent} />
+
+        {rentedForklift && (
+          <div className="mt-8 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+            <p>
+              The {rentedForklift.name} with (Serialnumber:{" "}
+              {rentedForklift.serial}) successfully rented!
+            </p>
+          </div>
+        )}
       </main>
 
       <Footer />
